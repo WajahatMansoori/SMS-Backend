@@ -9,6 +9,7 @@
   <ItemGroup>
     <Folder Include="Common\Behaiviours\" />
     <Folder Include="Common\Exceptions\" />
+    <Folder Include="Common\Mappings\" />
   </ItemGroup>
 
   <ItemGroup>
