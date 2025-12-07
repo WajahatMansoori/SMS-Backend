@@ -10,7 +10,6 @@ namespace SMS.Application.Common.Helper
 {
     public static class GenerateResponseHelper
     {
-        //public static async Task<BaseResponse<T>> SendResponse<T>(IRequest<T> request, Mediator mediator)
         public static async Task<BaseResponse<T>> SendResponse<T>(IRequest<T> request, ISender mediator)
         {
             var result = await mediator.Send(request);
