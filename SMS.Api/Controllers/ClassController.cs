@@ -18,13 +18,6 @@ namespace SMS.Api.Controllers
         [HttpGet("get-all-class")]
         public async Task<BaseResponse<List<ClassVm>>> GetAllAsync()
         {
-            //var Class = await Mediator.Send(new GetClassQuery());
-            //if (Class == null)
-            //    return GenerateBaseResponse("404", "No classes found.");
-            //var response = new BaseResponse<IEnumerable<ClassVm>>(
-            //true, "200", "Classes retrieved successfully.", Class);
-
-            //return GenerateResponse(response);
             return await GenerateResponseHelper.SendResponse(new GetClassQuery(), Mediator);
 
         }
@@ -32,48 +25,25 @@ namespace SMS.Api.Controllers
         [HttpGet("get-class-by-id")]
         public async Task<BaseResponse<ClassVm>> GetClassByIdAsync(int id)
         {
-            var ClassData = await Mediator.Send(new GetClassByIdQuery() { ClassId = id });
-            if(ClassData == null)
-            {
-                var ErrorResponse = new BaseResponse<ClassVm>(false, "404", "Data not Found", ClassData);
-                return ErrorResponse;
-            }
-            var response = new BaseResponse<ClassVm>(true,"200","Success",ClassData);
-            return response;
+            return await GenerateResponseHelper.SendResponse(new GetClassByIdQuery() { ClassId=id}, Mediator);
         }
 
         [HttpPost("add-class")]
-        public async Task<BaseResponse<CreateClassCommand>> AddClass(CreateClassCommand command)
+        public async Task<BaseResponse<bool>> AddClass(CreateClassCommand command)
         {
-            var CreatedClass = await Mediator.Send(command);
-            var response = new BaseResponse<CreateClassCommand>(true, "200", "Success", null);
-            return response;
+            return await GenerateResponseHelper.SendResponse(command, Mediator);
         }
 
         [HttpPost("update-class")]
-        public async Task<BaseResponse<UpdateClassCommand>> UpdateClass(UpdateClassCommand command)
+        public async Task<BaseResponse<bool>> UpdateClass(UpdateClassCommand command)
         {
-            var UpdatedClass = await Mediator.Send(command);
-            if (!UpdatedClass)
-            {
-                var errorReponse = new BaseResponse<UpdateClassCommand>(false, "400", "Bad request", null);
-                return errorReponse;
-            }
-            var response = new BaseResponse<UpdateClassCommand>(true, "200", "success", null);
-            return response;
+            return await GenerateResponseHelper.SendResponse(command, Mediator);
         }
 
         [HttpPost("delete-class")]
-        public async Task<BaseResponse<DeleteClassCommand>> DeleteClass(DeleteClassCommand command)
+        public async Task<BaseResponse<bool>> DeleteClass(DeleteClassCommand command)
         {
-            var DeleteClass= await Mediator.Send(command);
-            if (!DeleteClass)
-            {
-                var errorResponse = new BaseResponse<DeleteClassCommand>(false, "400", "bad request", null);
-                return errorResponse;
-            }
-            var response = new BaseResponse<DeleteClassCommand>(true, "200", "success", null);
-            return response;
+            return await GenerateResponseHelper.SendResponse(command, Mediator);
         }
 
     }

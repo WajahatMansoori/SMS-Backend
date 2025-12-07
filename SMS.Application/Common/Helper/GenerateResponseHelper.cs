@@ -15,7 +15,7 @@ namespace SMS.Application.Common.Helper
         {
             var result = await mediator.Send(request);
 
-            if (result == null)
+            if (result == null || (result is bool b && !b))
             {
                 return new BaseResponse<T>(
                     success: false,
