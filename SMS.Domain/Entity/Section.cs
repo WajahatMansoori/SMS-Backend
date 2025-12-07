@@ -10,7 +10,7 @@ namespace SMS.Domain.Entity
     {
         public int SectionId { get; set; }
         public string SectionName { get; set; }
-        public bool IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
         public DateTime CreationDate { get; set; }
     }
 }

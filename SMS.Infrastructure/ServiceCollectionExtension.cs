@@ -24,6 +24,7 @@ namespace SMS.Infrastructure
 
 
             services.AddScoped<IClassRepository, ClassRepository>();
+            services.AddScoped<ISectionRepository, SectionRepository>();
 
             return services;
         }

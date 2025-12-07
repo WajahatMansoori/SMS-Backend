@@ -25,7 +25,7 @@ namespace SMS.Application.Section.Queries.GetSectionById
             var sectionData = new SectionVm
             {
                 SectionId=section.SectionId,
-                SectionName=section.SectioName
+                SectionName=section.SectionName
             };
             return sectionData;
         }

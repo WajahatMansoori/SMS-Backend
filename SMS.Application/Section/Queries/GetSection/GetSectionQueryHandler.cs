@@ -23,7 +23,7 @@ namespace SMS.Application.Section.Queries.GetSection
             var sectionList = SectionData.Select(x => new SectionVm
             {
                 SectionId = x.SectionId,
-                SectionName = x.SectioName
+                SectionName = x.SectionName
             }).ToList();
             return sectionList;
         }

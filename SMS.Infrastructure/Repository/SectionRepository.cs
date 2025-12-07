@@ -18,9 +18,11 @@ namespace SMS.Infrastructure.Repository
             _context = context;
         }
 
-        public Task<bool> AddSection(Section section)
+        public async Task<bool> AddSection(Section section)
         {
-            throw new NotImplementedException();
+             _context.Sections.Add(section);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
         public async Task<bool> DeleteSection(int sectionId)

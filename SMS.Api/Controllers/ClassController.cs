@@ -6,6 +6,7 @@ using SMS.Application.Class.Commands.UpdateClass;
 using SMS.Application.Class.Queries.GetClass;
 using SMS.Application.Class.Queries.GetClassById;
 using SMS.Application.Common.Base;
+using SMS.Application.Common.Helper;
 using SMS.Domain.Entity;
 
 namespace SMS.Api.Controllers
@@ -15,15 +16,16 @@ namespace SMS.Api.Controllers
     public class ClassController : ApiControllerBase
     {
         [HttpGet("get-all-class")]
-        public async Task<IActionResult> GetAllAsync()
+        public async Task<BaseResponse<List<ClassVm>>> GetAllAsync()
         {
-            var Class = await Mediator.Send(new GetClassQuery());
-            if (Class == null)
-                return GenerateBaseResponse("404", "No classes found.");
-            var response = new BaseResponse<IEnumerable<ClassVm>>(
-            true, "200", "Classes retrieved successfully.", Class);
+            //var Class = await Mediator.Send(new GetClassQuery());
+            //if (Class == null)
+            //    return GenerateBaseResponse("404", "No classes found.");
+            //var response = new BaseResponse<IEnumerable<ClassVm>>(
+            //true, "200", "Classes retrieved successfully.", Class);
 
-            return GenerateResponse(response);
+            //return GenerateResponse(response);
+            return await GenerateResponseHelper.SendResponse(new GetClassQuery(), Mediator);
 
         }
 
